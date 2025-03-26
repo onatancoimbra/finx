@@ -1,0 +1,18 @@
+# Habilita o mod_rewrite
+RewriteEngine On
+
+# Redireciona todas as requisições para a pasta 'public' dentro de public_html
+RewriteCond %{REQUEST_URI} !^/public/
+
+# Redireciona tudo para a pasta 'public' onde está o CodeIgniter
+RewriteRule ^(.*)$ public/$1 [L]
+
+
+# Bloqueia o acesso aos arquivos sensíveis
+<FilesMatch "\.(env|htaccess|sql|log|ini)">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Impede a listagem de diretórios
+Options -Indexes
